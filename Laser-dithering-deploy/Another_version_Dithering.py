@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from io import BytesIO
-from PIL import Image
+from PIL import Image, ImageOps
 import streamlit as st
 from rembg import new_session, remove
 from streamlit_drawable_canvas import st_canvas
@@ -1165,7 +1165,9 @@ if uploaded_file is not None:
     source_bytes = uploaded_file.getvalue()
 
     try:
-        source_image = Image.open(BytesIO(source_bytes)).convert("RGB")
+        source_image = ImageOps.exif_transpose(
+            Image.open(BytesIO(source_bytes))
+        ).convert("RGB")
     except Exception as error:
         st.error(f"Gambar tidak dapat dibaca: {error}")
         st.stop()
