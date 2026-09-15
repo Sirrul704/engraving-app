@@ -1,0 +1,7 @@
+streamlit
+numpy
+Pillow
+opencv-python-headless
+rembg[cpu]
+streamlit-drawable-canvas
+streamlit-image-coordinates
